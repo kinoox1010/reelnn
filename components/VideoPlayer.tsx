@@ -87,6 +87,30 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     useState<SettingTab>("Settings");
 
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  const takeScreenshot = () => {
+  const video = videoRef.current;
+  if (!video) return;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+  const dataURL = canvas.toDataURL("image/png");
+
+  // Abrir imagem em nova aba
+  const newWindow = window.open();
+  if (newWindow) {
+    newWindow.document.write(`<img src="${dataURL}" alt="Screenshot" />`);
+  }
+  };
+
+
   const playerRef = useRef<HTMLDivElement>(null);
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const settingsMenuRef = useRef<HTMLDivElement>(null);
