@@ -774,6 +774,15 @@ useEffect(() => {
                     <RiFullscreenLine size={24} />
                   )}
                 </button>
+
+                <button
+                  onClick={takeScreenshot}
+                  className="text-white hover:text-gray-300 transition-colors"
+                  aria-label="Screenshot"
+                  title="Capturar Print"
+                >
+                  📸
+                </button>
               </div>
             </div>
           </div>
